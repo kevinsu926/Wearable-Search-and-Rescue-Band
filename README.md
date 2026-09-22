@@ -14,7 +14,9 @@ This project is a wearable triage wristband built around a PIC16F18324 microcont
 </p>
 
 ## PCB Preview
-
+<p align="center">
+<img width="475" alt="_Medtech_ONB — PCB Editor 2026-09-21 9_18_44 PM" src="https://github.com/user-attachments/assets/c005ac64-aba9-462f-85b6-5881fc76887d" />
+</p>
 
 
 ## 3D Board Render
