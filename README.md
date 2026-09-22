@@ -1,4 +1,4 @@
-# Self-Powered-Underwater-Data-Logger
+# Wearable Search and Rescue Band
 This project is a wearable triage wristband built around a PIC16F18324 microcontroller that monitors heart rate, blood oxygen (SpO2), and body temperature, then streams the readings wirelessly through a BLE module.
 
 ## Features
@@ -25,4 +25,9 @@ This project is a wearable triage wristband built around a PIC16F18324 microcont
 
 
 ## Firmware Architecture
-
+- Sleep mode: The MCU idles in low-power sleep to conserve the Li-ion battery, which is charged over USB-C through the onboard charge management IC
+- Timed/interrupt wake: A periodic timer (or an interrupt from the MAX30102's INT pin) wakes the MCU to take a new reading
+- Sense and store: The MCU reads heart-rate/SpO2 data from the MAX30102 over I²C (SDA/SCL) and stores the reading
+- BLE transmission: The MCU hands the reading to the RN4871 module over UART (RX/TX), which advertises or notifies it to a connected BLE central (e.g., a phone app)
+- Repeat: The system returns to sleep and repeats the cycle on the next wake event
+- In-circuit programming: A 5-pin header (MCLR, PGC, PGD, VDD, VSS) lets the MCU be programmed and debugged in place
