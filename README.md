@@ -31,3 +31,19 @@ This project is a wearable triage wristband built around a PIC16F18324 microcont
 - BLE transmission: The MCU hands the reading to the RN4871 module over UART (RX/TX), which advertises or notifies it to a connected BLE central (e.g., a phone app)
 - Repeat: The system returns to sleep and repeats the cycle on the next wake event
 - In-circuit programming: A 5-pin header (MCLR, PGC, PGD, VDD, VSS) lets the MCU be programmed and debugged in place
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#ffffff', 'primaryBorderColor': '#333333', 'lineColor': '#333333'}}}%%
+flowchart LR
+    A[Sleep Mode<br/>Low Power] --> B{Wake Timer or<br/>Sensor Interrupt?}
+    B -- No --> A
+    B -- Yes --> C[Wake Up MCU]
+    C --> D[Read MAX30102<br/>Heart Rate / SpO2]
+    D --> E[Store Reading]
+    E --> F[Send via UART to RN4871<br/>BLE Advertise / Notify]
+    F --> A
+```
+  <p align="center">
+<strong>Firmware Flowchart</strong>
+</p>
+
